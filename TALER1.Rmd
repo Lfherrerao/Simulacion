@@ -39,7 +39,7 @@ langostinos=data.frame(value = langostinos)
 
 # se grafican los dos histogramas.
 
-par(mfrow= c(1,2))
+par(mfrow= c(1,2))  
 
 ggplot(data=langostinos, aes (x = hembras))+
   geom_histogram(bins =5, col= "gray30", fill="white")+
