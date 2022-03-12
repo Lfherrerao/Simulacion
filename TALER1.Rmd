@@ -1,0 +1,6 @@
+---
+title: "Taller1"
+author: "JOHN ALEXANDER MARTINEZ Y LEONARDO FABIO HERRERA"
+date: '2022-03-12'
+output: html_document
+---
