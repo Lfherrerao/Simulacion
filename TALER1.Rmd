@@ -17,6 +17,9 @@ output:
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+
 library(quantmod)
 library(ggplot2)
 
@@ -25,6 +28,88 @@ hembras<-c(183.2,184.1,183.0,204.3,176.5,179.0,188.3,186.8,202.2,
            182.5,190.0,178.1,193.2,180.4,184.3,189.2,189.1,203.1,
            166.8,196.3,193.3,187.3,185.8,189.3,195.5,202.4,210.8)
 
+
+machos<-c(140.9,121.7,173.8,154.5,109.2,150.7,203.3,163.0,137.7,
+          173.9,177.4,154.8,177.5,153.4,138.7,136.7,165.3,126.7,
+          118.9,140.0,192.7,134.4,175.0,169.8,153.9,176.7,150.0)
+
+# se crea una matriz tanto con las hembras y los machos, se le da la propiedad de frame a la 
+# matriz, para poder processarla con ggplot.
+
+langostinos<- matrix(c(hembras, machos), nrow=27,ncol=2)
+colnames(langostinos)<-c('hembras','machos')
+langostinos=data.frame(value = langostinos)
+
+# se grafican los dos histogramas.
+
+par(mfrow= c(1,2))  
+
+ggplot(data=langostinos, aes (x = hembras))+
+  geom_histogram(bins =5, col= "gray30", fill="white")+
+  labs(title = "GRAFICA DE HEMBRAS", x = "TAMAÑO", y="CANTIDAD")
+
+ggplot(data=langostinos, aes (x = machos))+
+  geom_histogram(bins =5, col= "gray30", fill="white")+
+  labs(title = "GRAFICA DE MACHOS", x = "TAMAÑO", y="CANTIDAD")
+
+
+```
+
+
+
+
+
+-------------------------------------------------2--------------
+2.	En un restaurante de la ciudad se sabe que la probabilidad de que se reciba 
+un billete de $50.000 falso es de 0.015. Si se sabe que en una semana se reciben 
+pagos con 900 billetes de $50.000, halle la probabilidad de que: 
+a. A lo sumo 25 billetes sean falsos.
+b. La cantidad de billetes falsos esté entre 20 y 30.
+c. Más de 10 sean falsos.
+
+
+```{r}
+#a.  lo sumo 25 billetes sean falsos
+#p(x<=25) = p(x<26)
+pbinom(25,900,0.015)
+
+#b. la cantidad de billetes falsos entre 20 y 30
+#p(20<x30)
+pbinom(30,900,0.015)-pbinom(20,900,0.015)
+
+#c. Mas de 10 sean falsos
+#p(x>10) = 1-P(x<=10)
+1-pbinom(10,900,0.015)
+
+plot (0:900,dbinom(0:900,900,0.015),main ="Distribucion binomial(n=900,p=0.015)",
+      xlab = "Numero de billetes falsos" , ylab= "Probabilidad",col="red", pch=15)
+
+
+
+```
+
+
+
+3.  Según un estudio del Departamento Nacional de Estadística -DANE-, la vida media para el quinquenio de 2010 a 2015 de los habitantes de Colombia es 76 años, con una varianza de 25. Se pretende hacer un estudio con el objetivo de extrapolar los resultados anteriores a una pequeña ciudad de 100.000 habitantes, considerando que el tiempo de sobrevida es normal.
+a. ¿Cuántos de los habitantes de la pequeña ciudad superarán previsiblemente los 92 años?
+b. ¿Cuántos vivirán menos de 55 años o más de 75 años?
+
+
+
+```{r}
+#a. ¿Cuántos de los habitantes de la pequeña ciudad superarán previsiblemente los 92 años?
+
+#p(x>92) = 1-p(x<=92)
+1-pnorm(92,76,5)
+
+#b. ¿Cuántos vivirán menos de 55 años o más de 75 años?
+#p(x<55)  
+pnorm(55,76,5)
+# p(x>75) = 1-p(x<=75)
+1-pnorm(75,76,5)
+
+plot (0:4,dbinom(0:4,4,1/3),main ="Distribucion binomial(n=4,p=1/3)",
+      xlab = "Numero de exitos,Numero de jueces" , ylab= "Probabilidad",col="red", pch=15)
 
 machos<-c(140.9,121.7,173.8,154.5,109.2,150.7,203.3,163.0,137.7,
           173.9,177.4,154.8,177.5,153.4,138.7,136.7,165.3,126.7,
