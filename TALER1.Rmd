@@ -93,10 +93,12 @@ plot_grid(grafico1,grafico2, labels = "AUTO")
 
 ```
 
-b. El promedio de los  tamaños de langostinos hembras es de:189.0667 y el promedio de los tamaños de los langostinos machos es de 154.4667.
+b. El promedio de los  tamaños de langostinos hembras es de:189.0667 con una desviacion estandar de 9.83 y el promedio de los tamaños de los langostinos machos es de 154.4667 con una desviacion estandar de 23.064 .
 ```{r,echo=FALSE}
 mean(hembras)
 mean(machos)
+sd(hembras)
+sd(machos)
 ```
 c.
 
@@ -107,11 +109,16 @@ d.
 ```{r}
 
 plotH<-ggplot(data=langostinos, aes (x = hembras))+
-  geom_boxplot()
+  geom_boxplot()+
+  theme_classic()+
+  labs( caption = " ")
+  
 
 
 plotM<-ggplot(data=langostinos, aes (x = machos))+
-  geom_boxplot()
+  geom_boxplot()+
+  theme_classic()+
+  labs( caption = " ")
 
 plot_grid(plotH,plotM, labels = "AUTO")
 
