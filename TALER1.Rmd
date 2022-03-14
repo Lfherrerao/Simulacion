@@ -80,13 +80,13 @@ grafico1<-ggplot(data=langostinos, aes (x = hembras))+
   geom_density(alpha=.2, fill="red")+
   theme_classic()+
   geom_vline ( aes (xintercept= mean(hembras) ), color="blue",linetype="dashed", size=1)+
-  labs(title = "GRAFICA DE HEMBRAS", x = "TAMAÑO", y="FRECUENCIA",caption = "1. En la grafica de las hembras \n se puede evidenciar que es leptocurtica negativa y que segun sus distribuciones......")
+  labs(title = "GRAFICA DE HEMBRAS", x = "TAMAÑO", y="FRECUENCIA",caption = "1. En la grafica de las hembras (A)  se puede evidenciar  \n que es leptocurtica negativa")
 
 grafico2<-ggplot(data=langostinos, aes (x = machos))+
   geom_histogram(bins =5, col= "gray30", fill="blue")+
   theme_classic()+
     geom_vline ( aes (xintercept= mean(machos) ), color="pink",linetype="dashed", size=1)+
-  labs(title = "GRAFICA DE MACHOS", x = "TAMAÑO", y="FRECUENCIA")
+  labs(title = "GRAFICA DE MACHOS", x = "TAMAÑO", y="FRECUENCIA",caption = "2. En la grafica de los Machos (B)  se puede evidenciar  \n que es leptocurtica positiva.")
 
 plot_grid(grafico1,grafico2, labels = "AUTO")
 
