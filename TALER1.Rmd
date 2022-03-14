@@ -98,6 +98,24 @@ b. El promedio de los  tamaños de langostinos hembras es de:189.0667 y el prome
 mean(hembras)
 mean(machos)
 ```
+c.
+
+```{r}
+
+```
+d.
+```{r}
+
+plotH<-ggplot(data=langostinos, aes (x = hembras))+
+  geom_boxplot()
+
+
+plotM<-ggplot(data=langostinos, aes (x = machos))+
+  geom_boxplot()
+
+plot_grid(plotH,plotM, labels = "AUTO")
+
+```
 
 
 
