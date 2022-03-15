@@ -170,12 +170,12 @@ Grafica
 
 ```{r,echo=FALSE}
 
-#x<-c(0:900)
+#x<-c(1:900)
 #y<-dbinom(x,900,0.015)
 #plot(x,y)
 
 plot (0:900,dbinom(0:900,900,0.015),main ="Distribucion binomial(n=900,p=0.015)",
-      xlab = "Numero de billetes falsos" , ylab= "Probabilidad",col="red", pch=19)
+      xlab = "Numero de billetes falsos" , ylab= "Probabilidad",col="red", pch=15)
 ```
 
 
