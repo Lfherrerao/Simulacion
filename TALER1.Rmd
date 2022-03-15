@@ -101,7 +101,8 @@ sd(hembras)
 sd(machos)
 ```
 
-c.Intrvalo para la media 
+c.Intervalo para la media.
+A partir del resultado obtenido se puede concluir, con un nivel de confianza del 97%, que la altura promedio de las hembras se encuentra entre 184.7230mm y 193.4104. Y para los machos la altura promedio se encuentra entre 144.2760mm y 164.6573mm.
 
 ```{r,echo=FALSE}
 #t.test(machos, hembras,
