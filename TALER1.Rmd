@@ -117,6 +117,8 @@ t.test(machos, conf.level=0.97)$conf.int
 d. Por medio de las graficas podemos interpretar que el 50% de las hembras tiene un tamaño mayor a 189 mm, mientras que el 50 % de los machos tiene un tamaño mayor a 154 mm. siendo asi las hembras de mayor tamaño.
 ```{r,echo =FALSE}
 
+#graficas de los boxplot.
+
 plotH<-ggplot(data=langostinos, aes (x = hembras))+
   geom_boxplot()+
   theme_classic()+
@@ -166,6 +168,8 @@ qqline(machos,col="blue")
 un billete de $50.000 falso es de 0.015. Si se sabe que en una semana se reciben 
 pagos con 900 billetes de $50.000, halle la probabilidad de que: 
   a. A lo sumo 25 billetes sean falsos.
+  
+   ***INTERPRETACION :***La probabilidad de que  a lo sumo 25 billetes sean falsos es de 0.998.
 
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
@@ -175,16 +179,21 @@ pbinom(25,900,0.015)
 
 ```
 b. La cantidad de billetes falsos esté entre 20 y 30.
+
+***INTERPRETACION :***La probabilidad de que  la cantidad de Billetes falsos entre 20 y 30 es de 0.0334.
 ```{r,echo=FALSE}
 #b. la cantidad de billetes falsos entre 20 y 30
 #p(20<x30)
 pbinom(30,900,0.015)-pbinom(20,900,0.015)
 ```
+    
 c. Más de 10 sean falsos.
+
+***INTERPRETACION :***La probabilidad de que  la cantidad de Billetes falsos sean mas de 10 es de 0.697.
 ```{r, echo=FALSE}
 #c. Mas de 10 sean falsos
-#p(x>10) = 1-P(x<=10)
-1-pbinom(10,900,0.015)
+#p(x>10) = 1-P(x<=11)
+1-pbinom(11,900,0.015)
 ```
 
 Grafica
@@ -232,6 +241,19 @@ Grafica
 x<-c(0:100,20)
 y<-dnorm(x,76,5)
 plot(x,y,main ="Distribucion normal()",xlab="Numero de habitantes", ylab="Probabilidad", col="red", pch=19)
+
+
+
+
+#p(x<55)= p(x<=54)
+med55a<-dnorm(54,76,5)
+
+#p(x>75)= 1-p(x<=75)
+dx<- 1-dnorm(75,76,5)
+
+curve (dnorm(x,72,5), xlim = c(40,100),main='standar normal')
+#polygon(c(dx$x[dx$x >= 0], 0), c(dx$y[dx$x >= 80], 80),
+ #       col = rgb(1, 0, 0, alpha = 0.5), border = "red", main = "")
 
 
 
