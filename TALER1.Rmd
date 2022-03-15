@@ -100,13 +100,21 @@ mean(machos)
 sd(hembras)
 sd(machos)
 ```
-c.
 
-```{r}
+c.Intrvalo para la media 
+
+```{r,echo=FALSE}
+#t.test(machos, hembras,
+     #  paired=FALSE, var.equal=FALSE,
+     #  conf.level = 0.97)$conf.int
+
+t.test(hembras, conf.level=0.97)$conf.int
+
+t.test(machos, conf.level=0.97)$conf.int
 
 ```
-d.
-```{r}
+d. Por medio de las graficas podemos interpretar que el 50% de las hembras tiene un tamaño mayor a 189 mm, mientras que el 50 % de los machos tiene un tamaño mayor a 154 mm. siendo asi las hembras de mayor tamaño.
+```{r,echo =FALSE}
 
 plotH<-ggplot(data=langostinos, aes (x = hembras))+
   geom_boxplot()+
@@ -124,7 +132,7 @@ plot_grid(plotH,plotM, labels = "AUTO")
 
 ```
 
-e. 
+e. Puesto que las pruebas en los datos tanto de machos como las hembras es mayor al 5% concluimos que tiene una distribucion normal. 
 
 ```{r,echo=FALSE}
 
@@ -133,13 +141,18 @@ ks.test(hembras,0.5,alternative = "two.side")
 qqnorm(hembras)
 qqline(hembras,col="red")
 
-
-
-ks.test(machos,0.5,alternative = "two.side")
-qqnorm(machos)
-qqline(machos,col="blue")
+#ks.test(hembras,"pnorm",mean(hembras),sd(hembras))
 
 ```
+
+Por lo que podemos apreciar en la graficas, los puntos estan cercanos a la linea recta de ambas graficas y esto nos dice que su distribucion es normal, es decir, que hay normalidad en los datos. 
+
+```{r,echo=FALSE}
+ks.test(machos,0.5)
+qqnorm(machos)
+qqline(machos,col="blue")
+```
+
 
 
 
@@ -175,9 +188,11 @@ c. Más de 10 sean falsos.
 
 Grafica
 
+El grafico nos muestra que tiene una curtosis leptocurtica,con un coeficiente de asimetria positiva y que la probabilidad es mayor a los 25 billetes falsos, despues la probabilidad comienza a descender convirtiendose en casi cero.
+
 ```{r,echo=FALSE}
 
-#x<-c(1:900)
+#x<-c(0:900)
 #y<-dbinom(x,900,0.015)
 #plot(x,y)
 
@@ -188,24 +203,26 @@ plot (0:900,dbinom(0:900,900,0.015),main ="Distribucion binomial(n=900,p=0.015)"
 
 
 3.  Según un estudio del Departamento Nacional de Estadística -DANE-, la vida media para el quinquenio de 2010 a 2015 de los habitantes de Colombia es 76 años, con una varianza de 25. Se pretende hacer un estudio con el objetivo de extrapolar los resultados anteriores a una pequeña ciudad de 100.000 habitantes, considerando que el tiempo de sobrevida es normal.
+
 a. ¿Cuántos de los habitantes de la pequeña ciudad superarán previsiblemente los 92 años?
+
   
-  
-  
-  
-  ```{r,echo=FALSE, message=FALSE, warning=FALSE}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 
 
 #p(x>92) = 1-p(x<=92)
 1-pnorm(92,76,5)
 
 ```
+
 b. ¿Cuántos vivirán menos de 55 años o más de 75 años?
-  ```{r,echo=FALSE}
+```{r,echo=FALSE}
 #p(x<55)  
 pnorm(55,76,5)
 # p(x>75) = 1-p(x<=75)
 1-pnorm(75,76,5)
+
+pnorm(55,76,5)+1-pnorm(75,76,5)
 ```
 
 Grafica
@@ -214,6 +231,10 @@ Grafica
 x<-c(0:100,20)
 y<-dnorm(x,76,5)
 plot(x,y)
+
+x<-seq(2010,2015,0.01)
+y1<-dnorm(x,mean =76, sd= 5 )
+plot(x,y1)
 
 #lot (0:4,dbinom(0:4,4,1/3),main ="Distribucion binomial(n=4,p=1/3)",
 # xlab = "Numero de exitos,Numero de jueces" , ylab= "Probabilidad",col="red", pch=15)
